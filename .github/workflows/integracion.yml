@@ -11,13 +11,13 @@ jobs:
     runs-on: ubuntu-latest
     
     steps:
-      # 1. Detección de cambios (Git)
+      # 1. Detección de cambios y descarga del código
       - name: Checkout del código
         uses: actions/checkout@v3
         with:
-          fetch-depth: 0  # Necesario para que SonarCloud analice el historial
+          fetch-depth: 0  # Importante para que SonarCloud analice bien
 
-      # 2. Preparación del entorno
+      # 2. Preparación del entorno (Java 17)
       - name: Configurar Java 17
         uses: actions/setup-java@v3
         with:
@@ -25,18 +25,19 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      # 3 y 4. Compilación, Tests (JUnit) y Análisis de Calidad (SonarCloud)
+      # 3. Compilación, Tests y Análisis de Calidad
+      # NOTA: Si falla, verifica que 'sonar.projectKey' coincida con el de la web de SonarCloud
       - name: Build and Analyze
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Token automático de GitHub
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}    # El secreto que guardaste antes
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         run: |
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=ggarcia75_practica4-calidad \
+          -Dsonar.projectKey=ggarcia75 \
           -Dsonar.organization=ggarcia75 \
           -Dsonar.host.url=https://sonarcloud.io
 
-      # 5. Publicación del Artefacto (Solo si todo lo anterior funciona)
+      # 4. Publicación del Artefacto (Solo si todo lo anterior sale bien)
       - name: Subir Artefacto (JAR)
         if: success()
         uses: actions/upload-artifact@v4
