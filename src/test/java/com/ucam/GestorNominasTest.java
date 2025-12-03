@@ -10,7 +10,7 @@ public class GestorNominasTest {
     @Test
     void testSalarioJuniorJornadaNormal() {
         // 40 horas a 10€ = 400€
-        assertEquals(1000.0, gestor.calcularSalarioSemanal('J', 40), 0.01);
+        assertEquals(400.0, gestor.calcularSalarioSemanal('J', 40), 0.01);
     }
 
     @Test
