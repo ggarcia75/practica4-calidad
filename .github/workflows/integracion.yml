@@ -34,7 +34,7 @@ jobs:
     # Solo se ejecuta si los pasos anteriores tuvieron éxito (if: success)
     - name: Subir Artefacto (JAR generado)
       if: success()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
         name: aplicacion-nominas
         path: target/*.jar
