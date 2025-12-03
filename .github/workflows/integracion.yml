@@ -1,0 +1,41 @@
+name: Integración Continua - Práctica 4
+
+# 1. Detección de cambios [cite: 60]
+# Se activa cuando haces PUSH a la rama 'main'
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build-and-test:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Paso A: Bajar el código del repositorio
+    - name: Checkout del código
+      uses: actions/checkout@v3
+
+    # Paso B: Preparar el entorno (Instalar Java 17)
+    - name: Configurar Java 17
+      uses: actions/setup-java@v3
+      with:
+        java-version: '17'
+        distribution: 'temurin'
+        cache: maven
+
+    # Paso C: Compilar y Ejecutar Pruebas Unitarias [cite: 61, 62]
+    # 'mvn package' compila y lanza los tests automáticamente.
+    - name: Compilar y Testear con Maven
+      run: mvn -B package --file pom.xml
+
+    # Paso D: Publicar el Artefacto [cite: 64]
+    # Solo se ejecuta si los pasos anteriores tuvieron éxito (if: success)
+    - name: Subir Artefacto (JAR generado)
+      if: success()
+      uses: actions/upload-artifact@v3
+      with:
+        name: aplicacion-nominas
+        path: target/*.jar
+        retention-days: 5
