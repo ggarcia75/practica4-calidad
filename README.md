@@ -1,1 +1,0 @@
-# practica4-calidad
