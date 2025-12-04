@@ -33,7 +33,7 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Aquí lee el código 2f1ba7... de los secretos
         run: |
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-          -Dsonar.projectKey=ggarcia75_practica4-calidad \
+          -Dsonar.projectKey=ggarcia75_practica-4-calidad \
           -Dsonar.organization=ggarcia75 \
           -Dsonar.host.url=https://sonarcloud.io
 
