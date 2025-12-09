@@ -8,8 +8,8 @@ public class CocheTest {
     @Test
     public void testCreacionCoche() {
         Coche c = new Coche();
-        c.setMarca("Audi");
-        assertEquals("Audi", c.getMarca());
+        c.setMarca("Ferrari");
+        assertEquals("Ferrari", c.getMarca());
     }
 
     @Test
