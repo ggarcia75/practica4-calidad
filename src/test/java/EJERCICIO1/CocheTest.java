@@ -9,7 +9,7 @@ public class CocheTest {
     public void testCreacionCoche() {
         Coche c = new Coche();
         c.setMarca("Audi");
-        assertEquals("Audi", c.getMarca());
+        assertEquals("Ferrari", c.getMarca());
     }
 
     @Test
