@@ -36,7 +36,6 @@ jobs:
           -Dsonar.projectKey=ggarcia75_practica-4-calidad \
           -Dsonar.organization=ggarcia75 \
           -Dsonar.host.url=https://sonarcloud.io
-
       # 4. Publicación del Artefacto (Solo si todo sale bien)
       - name: Subir Artefacto (JAR)
         if: success()
