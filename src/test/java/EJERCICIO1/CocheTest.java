@@ -1,4 +1,4 @@
-package EJERCICIO1;
+apackage EJERCICIO1;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -8,7 +8,7 @@ public class CocheTest {
     @Test
     public void testCreacionCoche() {
         Coche c = new Coche();
-        c.setMarca("Audi");
+        c.setMarca("Ferrari");
         assertEquals("Audi", c.getMarca());
     }
 
