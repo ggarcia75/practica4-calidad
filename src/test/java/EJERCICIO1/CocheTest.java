@@ -8,7 +8,7 @@ public class CocheTest {
     @Test
     public void testCreacionCoche() {
         Coche c = new Coche();
-        c.setMarca("Audi");
+        c.setMarca("Ferrari");
         assertEquals("Audi", c.getMarca());
     }
 
